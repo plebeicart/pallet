@@ -1,0 +1,402 @@
+/* Premium Industrial. Visual overrides only; copy and interactions stay in place. */
+:root {
+  --radius: 1.25rem;
+  --muted: #667487;
+  --border: #e0e6ee;
+}
+body { background: var(--navy); }
+.container { width: calc(100% - 7rem); max-width: 87.5rem; }
+
+
+
+.header { background: #0b1b2efa; color: #fff; border-color: #ffffff20; }
+.header-inner { height: 5.75rem; gap: 1.625rem; }
+.header.scrolled { box-shadow: 0 0.5rem 1.875rem #020e2033; }
+.brand-icon { width: 3.625rem; height: 3.625rem; border-radius: 0.8125rem; font-size: 1.8125rem; }
+.brand strong { font-size: 1.3125rem; letter-spacing: -.0.4375rem; }
+.brand small { font-size: 0.6875rem; letter-spacing: 0; color: #d1dbe7; }
+.header nav { gap: 1.8125rem; font-size: 0.8125rem; }
+.header-contact { display: grid; grid-template-columns: auto auto; column-gap: 1.5625rem; align-items: center; text-align: left; }
+.header-contact>a { grid-column: 1; font-size: 1.1875rem; line-height: 1.5; }
+.header-contact>a.header-email { grid-column: 1; color: #d5dfeb; font-size: 0.75rem; line-height: 1.6; }
+.header-contact>.text-button { grid-column: 2; grid-row: 1 / 3; padding: 0.9375rem 1.3125rem; background: var(--orange); border-radius: 1.875rem; color: #fff; font-size: 0.6875rem; white-space: nowrap; box-shadow: 0 0.4375rem 1.5rem #ff790014; }
+.header-contact>.text-button:hover { background: #ff922b; transform: translateY(-2px); }
+.hero { min-height: 33.125rem; }
+.hero-content { padding-top: 2.5rem; padding-bottom: 2.375rem; }
+.hero h1 { max-width: 56.25rem; font-size: clamp(2.6875rem, 4.25vw, 4.125rem); letter-spacing: -0.15625rem; line-height: 1.09; }
+.intro-title--second { margin-top: 0.3125rem; }
+.hero-content>p { max-width: 40.625rem; font-size: 1.0625rem; line-height: 1.6; margin-top: 1.25rem; color: #d5deea; }
+.badge { font-size: 0.6875rem; letter-spacing: .2.1875rem; text-transform: uppercase; font-weight: 800; padding: 0.625rem 0.9375rem; margin-bottom: 1.5rem; color: var(--orange); border-color: #ff7900d9; background: #0b1b2e; }
+.badge>span { width: 0.5625rem; height: 0.5625rem; }
+.hero-photo { inset: 0 0 0 51%; height: auto; opacity: 1; background: url('../assets/images/warehouse-pk.webp') 61% center / cover no-repeat; clip-path: polygon(24% 0,100% 0,100% 100%,0 100%); border-top-left-radius: 3.25rem; }
+.hero:after { background: linear-gradient(90deg, #0b1b2e 0%, #0b1b2e 42%, #0b1b2e00 64%); }
+.hero-grid { opacity: .3; }
+.hero-actions { gap: 1.5rem; margin-top: 1.75rem; }
+.button { min-height: 3.5625rem; border-radius: 0.75rem; padding: 1.0625rem 1.625rem; font-size: 0.875rem; color: #fff; }
+.button-outline { background: #0b1b2e55; border-color: #d4deeb; border-width: 1.5px; }
+.button-outline:hover { background: #ffffff12; border-color: white; }
+.hero-actions .button:first-child { min-width: 14.0625rem; }
+.hero-actions .button:nth-child(2) { min-width: 10.625rem; }
+.hero-note { margin-top: 1.5625rem; color: #a0afc0; }
+.photo-caption { bottom: 1.375rem; right: 1.875rem; padding: 0.5rem 0.75rem; font-size: 0.4375rem; border-radius: 0.375rem; background: #0b1b2ed9; }
+.hero-index { right: 1.875rem; top: 1.5rem; }
+.benefits { border-top: 0; }
+.benefit-grid { padding: 1.4375rem 0 2.1875rem; }
+.benefit-grid>div { padding-inline: 1.5rem; gap: 1.0625rem; border-color: #ffffff30; }
+.benefit-grid>div:first-child { padding-left: 0; }
+.benefit-grid svg { width: 2.125rem; height: 2.125rem; }
+.benefit-grid strong { font-size: 0.875rem; line-height: 1.45; font-weight: 700; }
+.benefit-grid span { color: #a3b2c3; font-size: 0.625rem; line-height: 1.5; margin-top: 0.3125rem; }
+.section { padding-block: 4.75rem; background: #fff; }
+h2 { font-size: clamp(1.875rem, 3.1vw, 2.875rem); letter-spacing: -1.8px; }
+.eyebrow { color: #687c92; font-size: 0.625rem; }
+.section-head { margin-bottom: 2rem; }
+.section-head>p { font-size: 0.8125rem; max-width: 26.875rem; color: #5f6f82; }
+.services { background: var(--light); border-radius: 2rem 2rem 0 0; padding-top: 2.25rem; position: relative; }
+.services .section-head { margin-bottom: 1.75rem; }
+.direction-grid { gap: 1.375rem; }
+.direction, .direction.primary { min-height: 18rem; border-radius: 1.25rem; padding: 1.75rem; border: 1px solid #fff; background: #fff; color: var(--navy); box-shadow: 0 0.5rem 1.4375rem #142a4309; }
+.direction:hover { transform: translateY(-0.375rem); box-shadow: 0 1.125rem 2.1875rem #142a4314; border-color: #ff790036; }
+.direction>svg { width: 2.6875rem; height: 2.6875rem; margin-bottom: 1.5625rem; stroke-width: 1.7; }
+.direction h3 { font-size: 1.4375rem; letter-spacing: -.0.5rem; }
+.direction p, .direction.primary p { font-size: 0.8125rem; color: #56677c; line-height: 1.8; }
+.card-num { color: #a7b2bf; }
+.card-link { margin-top: auto; padding-top: 1.25rem; border: 0; font-size: 0.75rem; }
+.primary .card-link { border: 0; }
+.card-link b { font-size: 1.5625rem; }
+.additional-services { gap: 1.375rem; margin-top: 1.625rem; }
+.additional-services>span { color: #5c6e83; font-size: 0.6875rem; }
+.service-pills { gap: 0.5rem; }
+.service-pills button { background: #fff; border-color: #e2e8ef; font-size: 0.6875rem; border-radius: 0.5625rem; padding: 0.625rem 0.8125rem; }
+.service-pills button:hover { background: #fff8f1; border-color: #ff790070; }
+.catalog { background: #fff; }
+.filters { gap: 0.5625rem; }
+.filters button { border-radius: 0.5625rem; font-size: 0.75rem; padding: 0.6875rem 1.1875rem; background: var(--light); }
+.product { border-radius: 1.25rem; border-color: #e3e8ee; box-shadow: 0 0.3125rem 1.375rem #142a4305; }
+.product:hover { box-shadow: 0 0.9375rem 2.1875rem #142a4310; }
+.product-image { background: #fafbfd; border-radius: 0.8125rem; margin: 0.625rem 0.625rem 0; height: 14.6875rem; }
+.product-image img { mix-blend-mode: multiply; padding: 1.5625rem; }
+.product-info { padding: 1.375rem 1.625rem 1.5625rem; }
+.product h3 { font-size: 1.375rem; }
+.product-info>p { font-size: 0.8125rem; }
+.product-info>button { min-height: 2.9375rem; border-radius: 0.5625rem; background: var(--light); font-size: 0.75rem; }
+.product-info>button:hover { background: #fff5eb; }
+.spec { font-size: 0.6875rem; }
+.spec b { font-size: 0.625rem; }
+.catalog-help { padding-top: 1.5625rem; font-size: 0.75rem; }
+.catalog-help .text-button { font-size: 0.8125rem; }
+.about { background: var(--light); }
+.about-grid { gap: 4.0625rem; }
+.production-visual>img { height: 30.625rem; border-radius: 1.25rem; object-position: 60% center; }
+.production-label { background: #0b1b2ef2; border-radius: 0.75rem; }
+.about-copy p { font-size: 0.875rem; line-height: 1.85; }
+.check-list li { font-size: 0.75rem; }
+.process { background: var(--light); padding-top: 0.625rem; }
+.steps { gap: 1.875rem; }
+.steps article>span { color: #93a3b6; font-size: 2.125rem; }
+.steps h3 { font-size: 1.3125rem; }
+.steps p { font-size: 0.8125rem; line-height: 1.8; max-width: 17.5rem; }
+.request { background: var(--navy); padding-block: 5rem; }
+.request-grid { gap: 5rem; }
+.request h2 { font-size: clamp(2rem, 3.4vw, 3.125rem); }
+.request-grid>div>p { font-size: 0.875rem; color: #b4c1d0; }
+.request-phone { font-size: 1.875rem; }
+.lead-form { border-radius: 1.25rem; padding: 2rem; box-shadow: 0 0.9375rem 2.5rem #0000000b; }
+.lead-form h3 { font-size: 1.5625rem; }
+input:not([type=checkbox]), select, textarea { border-radius: 0.5rem; min-height: 2.8125rem; font-size: 0.75rem; background: #f8fafc; }
+label { font-size: 0.6875rem; }
+.demo-notice { border-radius: 0.5rem; }
+.consent { font-size: 0.625rem; }
+.contacts { background: #fff; }
+.contact-big { font-size: 1.6875rem; }
+.contact-callout { border-radius: 1.25rem; padding: 1.75rem; }
+.contact-callout h3 { font-size: 1.3125rem; }
+.contact-callout p { font-size: 0.8125rem; }
+footer { background: var(--navy); padding-block: 2.5rem 1.625rem; }
+.footer-top .brand strong { font-size: 1.125rem; }
+.footer-top .brand-icon { width: 3.0625rem; height: 3.0625rem; font-size: 1.5rem; }
+.footer-bottom { font-size: 0.625rem; }
+dialog { border-radius: 1.25rem; }
+/* The legal page keeps its white reading surface. */
+body:has(>.legal) { background: #fff; }
+
+@media(min-width: 130em) {
+  .hero { min-height: 36.25rem; }
+  .hero-content { padding-top: 3rem; padding-bottom: 2.625rem; }
+  .hero h1 { font-size: 4.25rem; max-width: 60.625rem; }
+  .hero-content>p { max-width: 43.125rem; font-size: 1.125rem; }
+  .hero-photo { left: 50%; background-size: cover; }
+  .hero-note { margin-top: 1.75rem; }
+}
+@media(min-width: 162.5em) {
+  .hero-photo { left: calc(50% + 1.25rem); background-position: 60% center; }
+}
+@media(max-width: 101.5625em) {
+  .container { width: calc(100% - 4.5rem); }
+  .header-inner { gap: 1.25rem; height: 5.5rem; }
+  .brand-icon { width: 3.0625rem; height: 3.0625rem; font-size: 1.5rem; }
+  .brand strong { font-size: 1.0625rem; }
+  .brand small { font-size: 0.5625rem; }
+  .header nav { font-size: 0.6875rem; gap: 1.25rem; }
+  .header-contact { column-gap: 1.0625rem; }
+  .header-contact>a { font-size: 1rem; }
+  .header-contact>a.header-email { font-size: 0.625rem; }
+  .header-contact>.text-button { font-size: 0.625rem; padding: 0.8125rem 1.0625rem; }
+  .hero { min-height: 31.875rem; }
+  .hero h1 { font-size: 3.25rem; max-width: 47.5rem; }
+  .hero-content>p { font-size: 0.9375rem; max-width: 35.625rem; }
+  .hero-photo { left: 52%; background-position: 62% center; }
+  .benefit-grid>div { padding-inline: 1.125rem; gap: 0.75rem; }
+  .benefit-grid strong { font-size: 0.75rem; }
+  .direction, .direction.primary { padding: 1.5625rem; }
+  .direction h3 { font-size: 1.3125rem; }
+  .direction p, .direction.primary p { font-size: 0.75rem; }
+  .request-grid { gap: 2.8125rem; }
+}
+@media(max-width: 81.25em) {
+  .header-contact { column-gap: 0.75rem; }
+  .header-contact>.text-button { padding: 0.6875rem 0.875rem; }
+  .header nav { gap: 0.9375rem; font-size: 0.625rem; }
+  .brand strong { font-size: 0.9375rem; }
+  .brand small { font-size: 0.5rem; }
+  .hero h1 { font-size: 2.875rem; max-width: 40.625rem; letter-spacing: -2px; }
+  .hero-content>p { max-width: 30.3125rem; font-size: 0.875rem; }
+  .hero-photo { left: 53%; background-position: 65% center; }
+  .hero:after { background: linear-gradient(90deg,#0b1b2e 38%,#0b1b2e00 74%); }
+  .benefit-grid { gap: 0; }
+  .benefit-grid>div { padding-inline: 0.875rem; }
+  .benefit-grid strong { font-size: 0.6875rem; }
+  .benefit-grid span { font-size: 0.5625rem; }
+  .benefit-grid svg { width: 1.8125rem; height: 1.8125rem; }
+  .direction-grid { gap: 0.9375rem; }
+  .direction, .direction.primary { padding: 1.4375rem; }
+  .direction h3 { font-size: 1.1875rem; }
+  .direction p, .direction.primary p { font-size: 0.6875rem; }
+  .about-grid { gap: 2.1875rem; }
+  .about-copy p { font-size: 0.75rem; }
+  .contact-big { font-size: 1.375rem; }
+}
+@media(max-width: 69.0625em) {
+  .container { width: calc(100% - 3rem); }
+  .header-inner { height: 5.125rem; }
+  .header nav { top: 5.125rem; background: var(--navy); color: white; padding: 0.9375rem 1.5rem; border-color: #ffffff20; }
+  .header nav a { font-size: 0.9375rem; padding-block: 0.875rem; }
+  .menu-toggle { border-color: #ffffff42; width: 2.6875rem; height: 2.6875rem; border-radius: 0.625rem; }
+  .menu-toggle span { background: #fff; }
+  .header-contact { display: grid; margin-left: auto; }
+  .header-contact>.text-button { display: block; }
+  .brand strong { font-size: 1.0625rem; }
+  .brand small { font-size: 0.5625rem; }
+  .hero { min-height: 31.875rem; }
+  .hero-content { padding-top: 2.1875rem; padding-bottom: 2.1875rem; }
+  .hero h1 { font-size: 2.625rem; max-width: 37.5rem; }
+  .hero-content>p { max-width: 26.5625rem; font-size: 0.8125rem; line-height: 1.75; }
+  .hero-photo { left: 54%; }
+  .badge { font-size: 0.5625rem; padding: 0.5625rem 0.75rem; margin-bottom: 1.375rem; }
+  .hero-actions { gap: 0.8125rem; }
+  .hero-actions .button { min-width: 0; padding: 0.9375rem 1.25rem; font-size: 0.75rem; }
+  .hero-actions .button:first-child { min-width: 11.875rem; }
+  .hero-actions .button:nth-child(2) { min-width: 9.0625rem; }
+  .benefit-grid { grid-template-columns: repeat(2,1fr); gap: 1.625rem 0; padding-block: 1.5625rem 2rem; }
+  .benefit-grid>div { padding-inline: 1.5rem; }
+  .benefit-grid>div:nth-child(odd) { padding-left: 0; }
+  .benefit-grid strong { font-size: 0.875rem; }
+  .benefit-grid span { font-size: 0.625rem; }
+  .services { border-radius: 1.625rem 1.625rem 0 0; }
+  .section { padding-block: 3.4375rem; }
+  .services { padding-top: 1.875rem; }
+  .direction, .direction.primary { min-height: 17.5rem; padding: 1.3125rem; }
+  .direction h3 { font-size: 1.125rem; }
+  .direction>svg { width: 2.1875rem; height: 2.1875rem; }
+  .section-head>p { font-size: 0.75rem; max-width: 16.875rem; }
+  .additional-services { gap: 0.875rem; }
+  .product-image { height: 12.1875rem; }
+  .product h3 { font-size: 1.25rem; }
+  .product-info { padding: 1.25rem; }
+  .about-grid { gap: 1.875rem; }
+  .production-visual>img { height: 29.375rem; }
+  .check-list li { font-size: 0.6875rem; }
+  .steps p { font-size: 0.75rem; }
+  .request-grid { gap: 1.875rem; }
+  .lead-form { padding: 1.625rem; }
+  .request h2 { font-size: 2.125rem; }
+  .request-grid>div>p { font-size: 0.75rem; }
+  .request-phone { font-size: 1.5625rem; }
+  .process { padding-top: 0; }
+}
+@media(max-width: 52.8125em) {
+  .header-contact { column-gap: 0; }
+  .header-contact>.text-button { grid-column: 1; grid-row: auto; border-radius: 0; padding: 0; background: none; color: var(--orange); font-size: 0.5625rem; box-shadow: none; }
+  .header-contact>a { font-size: 0.8125rem; }
+  .header-contact>a.header-email { font-size: 0.5rem; }
+  .header-contact>.text-button span { display: none; }
+}
+@media(max-width: 47.125em) {
+  .container { width: calc(100% - 2.25rem); }
+  
+  
+  .header-inner { height: 4.6875rem; gap: 0.625rem; }
+  .brand { gap: 0.5625rem; }
+  .brand-icon { width: 2.625rem; height: 2.875rem; font-size: 1.375rem; border-radius: 0.625rem; }
+  .brand strong { font-size: 0.8125rem; letter-spacing: -.0.25rem; }
+  .brand small { font-size: 0.4375rem; margin-top: 0.25rem; }
+  .header-contact { display: none; }
+  .menu-toggle { width: 2.5rem; height: 2.5rem; border-radius: 0.5625rem; }
+  .header nav { top: 4.6875rem; padding: 0.75rem 1.125rem; }
+  .hero { min-height: 0; }
+  .hero-content { padding-top: 1.8125rem; padding-bottom: calc(67vw + 2.4375rem); }
+  .hero h1 { font-size: clamp(1.875rem,8.6vw,2.75rem); line-height: 1.1; letter-spacing: -1.3px; max-width: 100%; }
+  .intro-title--second { margin-top: 0.375rem; }
+  .badge { font-size: 0.4375rem; letter-spacing: .0.9375rem; padding: 0.5rem 0.5625rem; gap: 0.4375rem; margin-bottom: 1.375rem; }
+  .badge>span { width: 0.4375rem; height: 0.4375rem; }
+  .hero-content>p { max-width: 100%; font-size: 0.75rem; line-height: 1.85; margin-top: 1.25rem; }
+  .hero-actions { gap: 0.625rem; margin-top: 1.4375rem; }
+  .hero-actions>.button, .hero-actions>.button:first-child, .hero-actions>.button:nth-child(2) { min-width: 0; min-height: 3.125rem; padding: 0.8125rem 1rem; font-size: 0.6875rem; gap: 0.625rem; border-radius: 0.625rem; flex: 1; }
+  .hero-note { margin-top: 1.4375rem; font-size: 0.5rem; }
+  .hero-photo { inset: auto 0 0; width: 100%; height: 67vw; background-size: cover; background-position: center center; clip-path: polygon(12% 0,100% 0,100% 100%,0 100%); border-radius: 1.375rem 0 0 0; }
+  .hero:after { background: none; }
+  .photo-caption { right: 1rem; bottom: 0.9375rem; font-size: 0.375rem; padding: 0.4375rem 0.5625rem; }
+  .benefit-grid { padding-block: 1.625rem 1.875rem; gap: 1.375rem 0; }
+  .benefit-grid>div { gap: 0.625rem; padding-inline: 0.875rem; }
+  .benefit-grid strong { font-size: 0.6875rem; line-height: 1.5; }
+  .benefit-grid span { font-size: 0.5rem; }
+  .benefit-grid svg { width: 1.6875rem; height: 1.6875rem; }
+  .section { padding-block: 2.75rem; }
+  h2, .section-head h2 { font-size: 1.875rem; letter-spacing: -1px; }
+  .section-head>p { max-width: 100%; font-size: 0.75rem; margin-top: 0.875rem; }
+  .services { padding-top: 1.875rem; border-radius: 1.5rem 1.5rem 0 0; }
+  .direction-grid { gap: 0.8125rem; }
+  .direction, .direction.primary { min-height: 0; padding: 1.5rem 1.3125rem; border-radius: 1.0625rem; grid-template-columns: 2.3125rem 1fr; gap: 0 1.0625rem; }
+  .direction>svg { width: 2.125rem; height: 2.125rem; margin-bottom: 0; }
+  .direction h3 { font-size: 1.25rem; margin-bottom: 0.5625rem; }
+  .direction p, .direction.primary p { font-size: 0.75rem; }
+  .card-link { padding-top: 1.0625rem; margin-top: 1.0625rem; border-top: 1px solid #edf1f5; font-size: 0.6875rem; }
+  .primary .card-link { border-top: 1px solid #edf1f5; }
+  .card-link b { font-size: 1.4375rem; }
+  .additional-services>span { font-size: 0.625rem; }
+  .service-pills button { font-size: 0.625rem; padding: 0.5625rem 0.625rem; }
+  .filters { gap: 0.375rem; }
+  .filters button { font-size: 0.625rem; padding: 0.5625rem 0.75rem; border-radius: 0.4375rem; }
+  .product-grid { gap: 0.6875rem; }
+  .product { border-radius: 0.9375rem; }
+  .product-image { height: 8.75rem; margin: 0.375rem 0.375rem 0; border-radius: 0.625rem; }
+  .product-image img { padding: 1.25rem 0.375rem 0.3125rem; }
+  .product-info { padding: 0.75rem 0.6875rem 0.875rem; }
+  .product h3 { font-size: 0.9375rem; min-height: 2.5rem; }
+  .product-info>p { font-size: 0.625rem; }
+  .spec { font-size: 0.5rem; }
+  .spec b { font-size: 0.4375rem; }
+  .product-info>button { font-size: 0.5rem; min-height: 2.75rem; padding: 0.5625rem 0.4375rem; border-radius: 0.4375rem; }
+  .catalog-help { font-size: 0.6875rem; }
+  .catalog-help .text-button { font-size: 0.6875rem; }
+  .about-grid { gap: 1.875rem; }
+  .production-visual>img { height: 18.75rem; border-radius: 1.0625rem; }
+  .production-label { left: 0.875rem; right: 0.875rem; bottom: 0.875rem; padding: 0.9375rem; font-size: 0.75rem; }
+  .production-label small { font-size: 0.5rem; }
+  .about-copy p { font-size: 0.8125rem; }
+  .check-list li { font-size: 0.6875rem; }
+  .about-copy .button { font-size: 0.75rem; }
+  .process { padding-top: 0; }
+  .steps { gap: 1.6875rem 1.25rem; }
+  .steps article>span { font-size: 1.8125rem; }
+  .steps h3 { font-size: 1.0625rem; }
+  .steps p { font-size: 0.6875rem; }
+  .request h2 { font-size: 2.125rem; }
+  .request-grid>div>p { font-size: 0.8125rem; }
+  .request-phone { font-size: 1.5625rem; }
+  .lead-form { padding: 1.4375rem; border-radius: 1.0625rem; }
+  input:not([type=checkbox]), select, textarea { font-size: 0.8125rem; min-height: 2.9375rem; }
+  .lead-form>.button { font-size: 0.8125rem; }
+  .consent { font-size: 0.5625rem; }
+  .contact-big { font-size: 1.6875rem; }
+  .contact-grid address { font-size: 0.9375rem; }
+  .contact-callout { border-radius: 1.0625rem; }
+  .contact-callout h3 { font-size: 1.3125rem; }
+  .contact-callout p { font-size: 0.75rem; }
+  .footer-top .brand strong { font-size: 1rem; }
+  .footer-bottom { font-size: 0.5625rem; }
+}
+@media(max-width: 28.4375em) {
+  .hero h1 { font-size: 1.875rem; }
+  .brand strong { font-size: 0.75rem; }
+  .brand small { font-size: 0.40625rem; }
+  .hero-actions>.button, .hero-actions>.button:first-child, .hero-actions>.button:nth-child(2) { padding-inline: 0.75rem; font-size: 0.625rem; }
+  .benefit-grid>div { padding-inline: 0.5625rem; gap: 0.5rem; }
+  .benefit-grid strong { font-size: 0.625rem; }
+  .benefit-grid span { font-size: 0.4375rem; }
+  .product-image { height: 7.4375rem; }
+  .product h3 { font-size: 0.875rem; }
+  .product-info { padding-inline: 0.5625rem; }
+  .product-info>button { font-size: 0.4375rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-photo { transform: none; opacity: 1; }
+}
+.hero .badge { color: var(--orange); }
+/* Tablet composition keeps the entire sign and front pallet in view. */
+@media(min-width: 47.20625em) and (max-width: 81.25em) {
+  .hero { min-height: 0; }
+  .hero-content { padding-bottom: calc(54vw + 3rem); }
+  .hero h1 { max-width: 100%; }
+  .hero-content>p { max-width: 40.625rem; }
+  .hero-photo { inset: auto 0 0; width: 100%; height: 54vw; background-position: center top; background-size: cover; clip-path: polygon(10% 0,100% 0,100% 100%,0 100%); border-radius: 1.75rem 0 0 0; }
+  .hero:after { background: none; }
+}
+@media(max-width: 47.125em) {
+  .hero-content { padding-bottom: calc(60vw + 2.4375rem); }
+  .hero-photo { height: 60vw; }
+}
+@media(min-width: 162.5em) {
+  .hero { max-width: 120rem; margin-inline: auto; }
+  .hero-photo { left: 50%; background-position: 61% center; }
+}
+
+/* Reference scale: rem dimensions follow the 130% reference at normal browser zoom.
+   Viewport units retain their natural relationship to the available screen width. */
+html { font-size: clamp(1.2rem, calc(1rem + .35vw), 1.3rem); scroll-padding-top: 7.5rem; }
+.hero-note { font-size: .8125rem; line-height: 1.65; color: #c0cddd; gap: .875rem; }
+.hero-note .line { width: 2px; height: 1.5rem; flex-shrink: 0; }
+/* Keep the IDN mailbox readable and on its own line below the phone. */
+.header-contact>a.header-email { white-space: nowrap; }
+@media(max-width:69.0625em) {
+  html { font-size: 1.125rem; }
+}
+@media(max-width:47.125em) {
+  html { font-size: 1rem; scroll-padding-top: 6rem; }
+  .hero-content>p { font-size: .875rem; }
+  .hero-note { font-size: .8125rem; max-width: 100%; }
+  .direction p, .direction.primary p { font-size: .875rem; }
+  .about-copy p, .steps p, .contact-callout p { font-size: .875rem; }
+  .product-info>p { font-size: .75rem; }
+  .spec { font-size: .625rem; }
+  .spec b { font-size: .5625rem; }
+  .product-info>button { font-size: .625rem; }
+  .service-pills button { font-size: .75rem; }
+  label { font-size: .75rem; }
+  input:not([type=checkbox]), select, textarea { font-size: 1rem; }
+  .demo-notice { font-size: .6875rem; }
+  .consent { font-size: .6875rem; }
+  .footer-bottom { font-size: .6875rem; }
+}
+/* A little more breathing room before the diagonal on compact laptops. */
+@media(min-width:81.3125em) and (max-width:101.5625em) {
+  .hero h1 { font-size: clamp(2.875rem, 4.7vw, 3.25rem); }
+  .hero-content>p { max-width: min(35.625rem, 52vw); }
+}
+
+/* Final hero caption: preserve the orange rule and wrap within the text column. */
+.hero-note { font-weight: 600; max-width: min(44rem, 52vw); }
+@media(max-width:81.25em) {
+  .hero-note { max-width: 100%; }
+}
+
+.hero-note__accent { color: var(--orange); font-size: 1.09em; line-height: 0; }
+
+/* Contacts now contain the two retained information blocks. */
+.contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media(max-width:47.125em) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:47.125em) {
+  .contact-grid>div:last-child { padding: 0; border: 0; }
+}
