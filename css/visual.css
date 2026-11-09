@@ -400,3 +400,36 @@ html { font-size: clamp(1.2rem, calc(1rem + .35vw), 1.3rem); scroll-padding-top:
 @media(max-width:47.125em) {
   .contact-grid>div:last-child { padding: 0; border: 0; }
 }
+
+/* Additional catalog characteristics, scoped to product cards. */
+.product { display: flex; flex-direction: column; }
+.product-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.product-info > button { margin-top: auto; }
+.product-specs { margin: 1rem 0; font-size: .6875rem; }
+.product-specs > div { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: .5rem; padding: .5rem 0; border-top: 1px solid var(--border); }
+.product-specs dt { color: var(--gray, #667483); }
+.product-specs dd { margin: 0; font-weight: 700; }
+.product h3, .product-specs dt, .product-specs dd { overflow-wrap: anywhere; }
+.product-image--pending { display: grid; place-items: center; }
+.product-photo-pending { padding: 1rem; color: var(--muted); font-size: .75rem; text-align: center; }
+@media (max-width: 47.125em) {
+  .product-specs { font-size: .6875rem; margin-bottom: .875rem; }
+  .product-specs > div { grid-template-columns: minmax(0, 1fr); gap: .1875rem; }
+}
+
+/* Match only the second-grade 1200×800 pallet to its first-grade neighbour. */
+.product-image img.pallet-grade2-balanced {
+  transform: translateX(-2%) scale(.94);
+  transform-origin: center;
+  filter: url(#pallet-grade2-tone);
+}
+@media (max-width: 47.125em) {
+  .product-image img.pallet-grade2-balanced { transform: translateX(-2%) scale(.92); }
+}
+
+/* Accounting contact follows the sales office hours. */
+.contact-grid .accounting-label { margin-top: 1.25rem; margin-bottom: .625rem; }
+.contact-grid .accounting-mail { margin-top: 0; }
+
+/* The footer now has one main row, without a separate bottom strip. */
+footer .footer-top { padding-bottom: 0; }
