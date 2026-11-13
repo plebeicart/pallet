@@ -1,0 +1,47 @@
+# Merge INSIDE the existing HTTPS site block. Keep domain/TLS/global options.
+# Replace its old root/file_server with the static handle below; preserve other
+# intentional routes. Requires Caddy >= 2.8 (older: skip_log instead of log_skip).
+log_skip /api/*
+
+handle /api/* {
+    request_body {
+        max_size 16KB
+    }
+    reverse_proxy 127.0.0.1:8000 {
+        # Overwrite user-supplied values. This assumes Caddy receives clients
+        # directly; do not copy this unchanged behind a CDN/load balancer.
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+        transport http {
+            dial_timeout 3s
+            response_header_timeout 120s
+        }
+    }
+}
+
+@public path / /index.html /privacy.html /consent.html
+handle @public {
+    root * /var/www/pallet
+    file_server {
+        hide .git .env .env.*
+    }
+}
+
+handle_path /css/* {
+    root * /var/www/pallet/css
+    file_server
+}
+
+handle_path /js/* {
+    root * /var/www/pallet/js
+    file_server
+}
+
+handle_path /assets/* {
+    root * /var/www/pallet/assets
+    file_server
+}
+
+handle {
+    respond 404
+}

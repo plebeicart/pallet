@@ -11,8 +11,24 @@
  // Defensive cleanup if animation events are interrupted. CSS also hides it without JS.
  setTimeout(dismiss, 2400);
 })();
-// Set to your same-origin backend URL after implementing the contract in README.md.
-const FORM_ENDPOINT = '';
+// The server is the only authority for enabling real collection.
+const FORM_ENDPOINT = '/api/requests';
+let requestsEnabled = false;
+let requestToken = '';
+async function loadRequestConfig() {
+ try {
+  const response = await fetch(`${FORM_ENDPOINT}/config`, { cache: 'no-store', signal: AbortSignal.timeout(5000) });
+  const config = await response.json();
+  requestsEnabled = response.ok && config.enabled === true && typeof config.token === 'string';
+  requestToken = requestsEnabled ? config.token : '';
+ } catch { requestsEnabled = false; requestToken = ''; }
+ document.querySelectorAll('.demo-notice').forEach(el => el.hidden = requestsEnabled);
+ document.querySelectorAll('[data-lead] [type=submit]').forEach(el => {
+  if (!el.disabled) el.innerHTML = `${requestsEnabled ? 'Отправить заявку' : 'Проверить заявку'} <span>↗</span>`;
+ });
+}
+loadRequestConfig();
+setInterval(loadRequestConfig, 3600000);
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 function closeMenu() { navigation.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Открыть меню'); }
@@ -47,7 +63,9 @@ const serviceDetails = {
  pooling: ['Пулинг паллет', 'Организуем оборот возвратной паллетной тары. Схему обмена, учёта и обслуживания подбираем под логистические процессы предприятия.']
 };
 function openRequest(subject, description = '') {
- closeMenu(); dialog.querySelector('form').reset(); dialog.querySelector('.form-status').textContent = '';
+ closeMenu();
+ if (dialog.querySelector('[type=submit]').disabled) { dialog.showModal(); document.body.classList.add('modal-open'); return; }
+ if (dialogTitle.textContent !== subject) dialog.querySelector('.form-status').textContent = '';
  dialogTitle.textContent = subject; dialogDescription.textContent = description;
  dialogDescription.hidden = !description; dialog.querySelector('[name=subject]').value = subject;
  dialog.showModal(); document.body.classList.add('modal-open');
@@ -59,26 +77,64 @@ dialog.addEventListener('click', e => { const r = dialog.getBoundingClientRect()
 dialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
 function validatePhone(input) {
  const digits = input.value.replace(/\D/g, '');
- const valid = /^[+\d\s()\-]+$/.test(input.value) && digits.length >= 10 && digits.length <= 15;
+ const valid = /^\+?[0-9 ()-]+$/.test(input.value.trim()) && digits.length >= 10 && digits.length <= 15;
  input.setCustomValidity(valid || !input.value ? '' : 'Укажите корректный телефон: от 10 до 15 цифр.');
 }
 document.querySelectorAll('[name=phone]').forEach(input => { input.addEventListener('input', () => validatePhone(input)); input.addEventListener('blur', () => validatePhone(input)); });
 document.querySelectorAll('[data-lead]').forEach(form => {
+ form.removeAttribute('onsubmit');
  const name = form.elements.name;
+ const requestIds = new Map();
+ let submitting = false;
  name.addEventListener('input', () => name.setCustomValidity(name.value.trim().length >= 2 ? '' : 'Укажите имя: не менее двух символов.'));
  form.addEventListener('submit', async e => {
- e.preventDefault(); validatePhone(form.elements.phone);
+ e.preventDefault();
+ if (submitting) return;
+ validatePhone(form.elements.phone);
  name.setCustomValidity(name.value.trim().length >= 2 ? '' : 'Укажите имя: не менее двух символов.');
  if (!form.reportValidity()) return;
  const status = form.querySelector('.form-status');
- if (!FORM_ENDPOINT) { status.textContent = 'Поля заполнены корректно. Это демонстрационный режим — заявка не отправлена. Для заказа: +7 (999) 117-88-28 или vip@паллет.com.'; return; }
- const submit = form.querySelector('[type=submit]'); submit.disabled = true; status.textContent = 'Отправляем заявку…';
- try { const response = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }); const result = await response.json(); if (!response.ok || result.ok !== true) throw new Error('Submission failed'); status.textContent = 'Заявка отправлена. Спасибо! Мы свяжемся с вами в рабочее время.'; form.reset(); }
- catch { status.textContent = 'Не удалось отправить заявку. Попробуйте позже или позвоните: +7 (999) 117-88-28.'; }
- finally { submit.disabled = false; }
+ if (!requestsEnabled) { status.textContent = 'Поля заполнены корректно. Это демонстрационный режим — заявка не отправлена. Для заказа: +7 (999) 117-88-28 или vip@паллет.com.'; return; }
+ const submit = form.querySelector('[type=submit]');
+ const payload = { ...Object.fromEntries(new FormData(form)), form: form.dataset.form };
+ const signature = JSON.stringify(payload);
+ if (!requestIds.has(signature)) requestIds.set(signature, crypto.randomUUID());
+ payload.request_id = requestIds.get(signature);
+ payload.token = requestToken;
+ const controls = [...form.elements].filter(el => !el.disabled);
+ controls.forEach(el => el.disabled = true);
+ submitting = true; submit.disabled = true; form.setAttribute('aria-busy', 'true');
+ status.textContent = 'Отправляем заявку…';
+ try {
+  const response = await fetch(FORM_ENDPOINT, {
+   method: 'POST', headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify(payload), signal: AbortSignal.timeout(90000)
+  });
+  const result = await response.json();
+  if (!response.ok || result.ok !== true) {
+   const errors = {
+    422: 'Проверьте поля и согласие. Если страница открыта давно, обновите её перед заполнением.',
+    429: 'Слишком много попыток. Попробуйте позже или позвоните нам.',
+    503: response.headers.get('Retry-After') === '30' ? 'Письмо не принято. Повторите через 30 секунд или позвоните нам.' : 'Приём заявок сейчас недоступен. Пожалуйста, позвоните нам.',
+    409: 'Эта заявка уже отправляется. Подождите и проверьте результат.',
+    502: 'Не удалось подтвердить отправку. Пожалуйста, позвоните нам, чтобы избежать дублирования заявки.'
+   };
+   status.textContent = errors[response.status] || 'Не удалось отправить заявку. Позвоните: +7 (999) 117-88-28.';
+   return;
+  }
+  status.textContent = 'Заявка отправлена. Спасибо! Мы свяжемся с вами в рабочее время.';
+  form.reset();
+  if (form.dataset.form === 'modal') form.elements.subject.value = dialogTitle.textContent;
+  await loadRequestConfig();
+ } catch {
+  status.textContent = 'Не удалось подтвердить отправку. Пожалуйста, позвоните, чтобы уточнить результат: +7 (999) 117-88-28.';
+ } finally {
+  submitting = false; controls.forEach(el => el.disabled = false); form.removeAttribute('aria-busy');
+ }
  });
 });
-if (FORM_ENDPOINT) { document.querySelectorAll('.demo-notice').forEach(el => el.hidden = true); document.querySelectorAll('[type=submit]').forEach(el => el.innerHTML = 'Отправить заявку <span>↗</span>'); }
+// Enable native controls only after every submit handler is installed.
+document.querySelectorAll('[data-lead] [type=submit]').forEach(button => button.disabled = false);
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
  const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .08 });
  document.querySelectorAll('.section-head, .direction, .about-grid, .steps article, .contact-grid').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });

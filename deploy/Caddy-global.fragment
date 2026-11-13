@@ -1,0 +1,9 @@
+# Merge into the EXISTING global options block, outside all site blocks.
+# Validate using the installed Caddy version before reload.
+servers {
+    timeouts {
+        read_header 10s
+        read_body 10s
+        idle 1m
+    }
+}
